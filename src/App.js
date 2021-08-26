@@ -7,6 +7,7 @@ import axios from "axios";
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const [secretMessage, setSecretMessage] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
   const [posts, setPosts] = useState([]);
 
   const getCookie = (name) => {
@@ -24,17 +25,20 @@ function App() {
   useEffect(() => {
     setAccessToken(getCookie("accessToken"));
     setSecretMessage(getCookie("secretMessage"));
-    console.log(getCookie("accessToken"));
-    console.log(getCookie("secretMessage"));
 
     axios
-      .get(__API__ + "/posts", {
+      .get(__API__ + "/login/status", {
         headers: {
           Authorization: `Bearer ${getCookie("accessToken")}`,
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.status);
+        setLoginStatus(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoginStatus(false);
       });
   }, []);
 
@@ -43,6 +47,7 @@ function App() {
       <LoginButton url={__API__ + "/login"}></LoginButton>
       <h1>accessToken: {accessToken || "empty"}</h1>
       <h1>secretMessage: {secretMessage || "empty"}</h1>
+      <h1>loginStatus: {loginStatus ? "true" : "false"}</h1>
     </div>
   );
 }
