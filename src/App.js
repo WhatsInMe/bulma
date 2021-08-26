@@ -8,7 +8,8 @@ function App() {
   const [secretMessage, setSecretMessage] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const getCookieName = (name, cookie) => {
+  const getCookie = (name) => {
+    const cookie = document.cookie;
     if (!cookie) {
       return "";
     }
@@ -20,8 +21,10 @@ function App() {
   };
 
   useEffect(() => {
-    setAccessToken(getCookieName("accessToken", document.cookie));
-    setSecretMessage(getCookieName("secretMessage", document.cookie));
+    setAccessToken(getCookie("accessToken"));
+    setSecretMessage(getCookie("secretMessage"));
+    console.log(getCookie("accessToken"));
+    console.log(getCookie("secretMessage"));
   }, []);
 
   return (
