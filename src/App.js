@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { __API__ } from "./utilities/constants";
 import LoginButton from "./components/buttons/login";
+import axios from "axios";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -25,6 +26,16 @@ function App() {
     setSecretMessage(getCookie("secretMessage"));
     console.log(getCookie("accessToken"));
     console.log(getCookie("secretMessage"));
+
+    axios
+      .get(__API__ + "/posts", {
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   }, []);
 
   return (
