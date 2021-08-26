@@ -1,7 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { __API__ } from "./utilities/constants";
 import LoginButton from "./components/buttons/login";
 
