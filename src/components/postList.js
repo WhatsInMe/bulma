@@ -4,16 +4,14 @@ import React, { useEffect, useState } from "react";
 import { __API__ } from "../utilities/constants";
 import { getCookie } from "../utilities/functions";
 
-const PostList = () => {
+const PostList = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
       .get(__API__ + "/posts", {
-        headers: {
-          // Authorization: `Bearer ${getCookie("accessToken")}`,
-          Authorization: `Bearer test1`,
-        },
+        // headers: { Authorization: `Bearer ${props.accessToken}` },
+        headers: { Authorization: `Bearer test1` },
       })
       .then((res) => {
         setPosts(res.data);

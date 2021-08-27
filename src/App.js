@@ -9,16 +9,17 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
+    const cookie = getCookie("accessToken");
     axios
       .get(__API__ + "/login/status", {
-        headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
+        headers: { Authorization: `Bearer ${cookie}` },
       })
       .then(() => {
         setLoginStatus(true);
+        setAccessToken(cookie);
       })
       .catch(() => {
         setLoginStatus(false);
@@ -30,7 +31,7 @@ function App() {
       <h1>loginStatus: {loginStatus ? "true" : "false"}</h1>
       {loginStatus ? (
         <div>
-          <PostList></PostList>
+          <PostList accessToken={accessToken}></PostList>
         </div>
       ) : (
         <div>
