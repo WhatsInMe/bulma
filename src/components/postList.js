@@ -4,15 +4,15 @@ import React, { useEffect, useState } from "react";
 import { __API__ } from "../utilities/constants";
 import { getCookie } from "../utilities/functions";
 
-const Asdf = () => {
+const PostList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
       .get(__API__ + "/posts", {
         headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-          //   Authorization: `Bearer test1`,
+          // Authorization: `Bearer ${getCookie("accessToken")}`,
+          Authorization: `Bearer test1`,
         },
       })
       .then((res) => {
@@ -44,4 +44,4 @@ const Asdf = () => {
   );
 };
 
-export default Asdf;
+export default PostList;

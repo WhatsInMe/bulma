@@ -2,7 +2,7 @@ import "./App.css";
 import LoginButton from "./components/buttons/login";
 import axios from "axios";
 
-import Asdf from "./components/asdf";
+import PostList from "./components/postList";
 import { __API__ } from "./utilities/constants";
 import { getCookie } from "./utilities/functions";
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ function App() {
       <h1>loginStatus: {loginStatus ? "true" : "false"}</h1>
       {loginStatus ? (
         <div>
-          <Asdf></Asdf>
+          <PostList></PostList>
         </div>
       ) : (
         <div>
