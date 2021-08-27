@@ -4,24 +4,22 @@ import React, { useEffect, useState } from "react";
 import { __API__ } from "../utilities/constants";
 import { getCookie } from "../utilities/functions";
 
-const Asdf = (props) => {
+const Asdf = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
       .get(__API__ + "/posts", {
         headers: {
-          //   Authorization: `Bearer ${getCookie("accessToken")}`,
-          Authorization: `Bearer test1`,
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+          //   Authorization: `Bearer test1`,
         },
       })
       .then((res) => {
-        console.log("yes");
-        console.log(res.data);
         setPosts(res.data);
       })
-      .catch(() => {
-        console.log("no");
+      .catch((err) => {
+        console.error(err);
       });
   }, []);
 
@@ -31,13 +29,15 @@ const Asdf = (props) => {
         <div>
           <ul>
             {posts.map((post) => (
-              <li>{post.id}</li>
+              <li>
+                id: {post.id} title: {post.title} text: {post.text}
+              </li>
             ))}
           </ul>
         </div>
       ) : (
         <div>
-          <h1>nothing</h1>
+          <h1>no posts</h1>
         </div>
       )}
     </div>
