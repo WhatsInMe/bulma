@@ -6,10 +6,6 @@ import { getCookie } from "../utilities/functions";
 
 const Asdf = (props) => {
   useEffect(() => {
-    // axios.get("http://localhost:3001/").then((res) => {
-    //   console.log(res.data);
-    // });
-
     axios
       .get(__API__ + "/posts", {
         headers: {
