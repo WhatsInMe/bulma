@@ -29,7 +29,11 @@ const Asdf = (props) => {
     <div>
       {posts.length ? (
         <div>
-          <h1>something</h1>
+          <ul>
+            {posts.map((post) => (
+              <li>{post.id}</li>
+            ))}
+          </ul>
         </div>
       ) : (
         <div>
