@@ -15,18 +15,26 @@ function App() {
           Authorization: `Bearer ${getCookie("accessToken")}`,
         },
       })
-      .then((res) => {
+      .then(() => {
         setLoginStatus(true);
       })
-      .catch((err) => {
+      .catch(() => {
         setLoginStatus(false);
       });
   }, []);
 
   return (
     <div>
-      <LoginButton url={__API__ + "/login"}></LoginButton>
       <h1>loginStatus: {loginStatus ? "true" : "false"}</h1>
+      {loginStatus ? (
+        <div>
+          <h1>this is the website</h1>
+        </div>
+      ) : (
+        <div>
+          <LoginButton url={__API__ + "/login"}></LoginButton>
+        </div>
+      )}
     </div>
   );
 }
